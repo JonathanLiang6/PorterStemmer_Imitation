@@ -11,111 +11,98 @@
 #include "../include/WordTable.h"
 #include "../include/CalculateTextSimiarity.h"
 
+// main.cpp
 int main()
 {
-
 	while (true)
 	{
-		std::cout << "ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½Òªï¿½Ö´ï¿½ï¿½ã·¨ï¿½Î¿ï¿½Porter Stemmerï¿½ã·¨Êµï¿½ï¿½" << std::endl;
-		std::cout << "ï¿½ï¿½ÏµÍ³ï¿½ï¿½Ö§ï¿½ï¿½Ó¢ï¿½ï¿½txtï¿½Ä±ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë«Ð±ï¿½Ü·Ö¼ï¿½ï¿½ï¿½" << std::endl;
-		std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½:" << std::endl;
-		std::cout << "1. ï¿½ò¿ª±ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½" << std::endl;
-		std::cout << "2. Ê¹ï¿½ï¿½ÏµÍ³Ê¾ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½Òµï¿½ï¿½ï¿½(TestFile)" << std::endl;
-		std::cout << "3. ï¿½È½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½" << std::endl;
-		std::cout << "4. ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½" << std::endl;
+		std::cout << "ÕâÊÇÒ»¸öÎÄ±¾·ÖÎöÏµÍ³£¬Ö÷ÒªËã·¨²Î¿¼Porter StemmerËã·¨ÊµÏÖ" << std::endl;
+		std::cout << "ÏµÍ³½öÖ§³ÖÓ¢ÎÄtxtÎÄ±¾ÎÄ¼þÂ·¾¶£¬ÇëÎðÊ¹ÓÃË«ÒýºÅÊäÈë" << std::endl;
+		std::cout << "ÇëÑ¡Ôñ²Ù×÷£º" << std::endl;
+		std::cout << "1. ´ò¿ª±¾µØÎÄ¼þ²éÕÒµ¥´Ê" << std::endl;
+		std::cout << "2. Ê¹ÓÃÏµÍ³Ê¾ÀýÎÄ¼þ²éÕÒµ¥´Ê(TestFile)" << std::endl;
+		std::cout << "3. ±È½ÏÎÄ±¾ÏàËÆ¶È" << std::endl;
+		std::cout << "4. ÍË³ö³ÌÐò" << std::endl;
 
 		int choice;
-		std::cin >> choice;
+		if (!(std::cin >> choice))
+		{
+			std::cout << "ÊäÈëÎÞÐ§£¬ÇëÊäÈëÒ»¸öÕûÊý¡£" << std::endl;
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			continue;
+		}
 
 		if (choice == 1)
 		{
 			std::string file1;
-			std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½: ";
+			std::cout << "ÇëÊäÈëÎÄ¼þÂ·¾¶: ";
 			std::cin >> file1;
 			TextProcessor fileone;
 
 			if (!fileone.processTextFile(file1))
 			{
-				std::cout << "ï¿½Þ·ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½È·ï¿½ï¿½" << std::endl;
+				std::cout << "ÎÞ·¨´ò¿ªÎÄ¼þ£¬Çë¼ì²éÂ·¾¶ÊÇ·ñÕýÈ·¡£" << std::endl;
 				std::cout << std::endl;
 				continue;
 			}
-			std::cout << "ï¿½Ä¼ï¿½" << file1 << "ï¿½ï¿½Ó¦ï¿½Äµï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½" << std::endl;
+			std::cout << "ÎÄ¼þ" << file1 << "¶ÔÓ¦µÄµ¥´Ê±íÈçÏÂ" << std::endl;
 			fileone.print();
-			std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ÒµÄµï¿½ï¿½ï¿½:";
+			std::cout << "ÇëÊäÈëÒª²éÕÒµÄµ¥´Ê: ";
 			std::string word1;
 			std::cin >> word1;
-			Sleep(10);
-			std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒµÄµï¿½ï¿½ï¿½Æµï¿½ï¿½Îª" << fileone.search(word1);
-			std::cout << std::endl;
-			Sleep(10);
+			std::cout << "ÄúËù²éÕÒµÄµ¥´ÊÆµÂÊÎª" << fileone.search(word1) << std::endl;
 		}
-
 		else if (choice == 2)
 		{
 			std::ifstream file("../test/TestFile.txt");
 			if (!file.is_open())
 			{
 				std::cerr << "Error opening file: " << "TestFile.txt" << std::endl;
-				return false;
+				continue;
 			}
 			TextProcessor systemfile;
-			std::cout << "ï¿½Ä¼ï¿½" << "TestFile.txt" << "ï¿½ï¿½Ó¦ï¿½Äµï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½" << std::endl;
+			std::cout << "ÎÄ¼þ" << "TestFile.txt" << "¶ÔÓ¦µÄµ¥´Ê±íÈçÏÂ" << std::endl;
 			if (systemfile.processTextFile("../test/TestFile.txt"))
 			{
 				systemfile.print();
 			}
-			std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ÒµÄµï¿½ï¿½ï¿½:";
+			std::cout << "ÇëÊäÈëÒª²éÕÒµÄµ¥´Ê: ";
 			std::string word1;
 			std::cin >> word1;
-			Sleep(10);
-			std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÒµÄµï¿½ï¿½ï¿½Æµï¿½ï¿½Îª" << systemfile.search(word1);
-			std::cout << std::endl;
-			Sleep(10);
+			std::cout << "ÄúËù²éÕÒµÄµ¥´ÊÆµÂÊÎª" << systemfile.search(word1) << std::endl;
 		}
-
 		else if (choice == 3)
 		{
 			std::string file1, file2;
-			std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½: ";
+			std::cout << "ÇëÊäÈëµÚÒ»¸öÎÄ¼þÂ·¾¶: ";
 			std::cin >> file1;
-			std::cout << "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Â·ï¿½ï¿½: ";
+			std::cout << "ÇëÊäÈëµÚ¶þ¸öÎÄ¼þÂ·¾¶: ";
 			std::cin >> file2;
 			TextProcessor fileone;
 			TextProcessor filetwo;
 			if (!fileone.processTextFile(file1) || !filetwo.processTextFile(file2))
 			{
-				std::cout << "ï¿½Þ·ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½È·ï¿½ï¿½" << std::endl;
+				std::cout << "ÎÞ·¨´ò¿ªÎÄ¼þ£¬Çë¼ì²éÂ·¾¶ÊÇ·ñÕýÈ·¡£" << std::endl;
 				std::cout << std::endl;
 				continue;
 			}
-			std::cout << "ï¿½ï¿½Æªï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¶Èµï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½Îªï¿½ï¿½";
-			Sleep(10);
+			std::cout << "Á½ÆªÎÄ±¾»ùÓÚ´ÊÆµÏòÁ¿µÄÎÄ±¾ÏàËÆ¶ÈÎª: ";
 			std::cout << calculateSimilarity(fileone, filetwo) << std::endl;
-			Sleep(10);
-			std::cout << "ï¿½ï¿½Æªï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½î³¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä±ï¿½ï¿½ï¿½ï¿½Æ¶ï¿½Îªï¿½ï¿½";
-			Sleep(10);
+			std::cout << "Á½ÆªÎÄ±¾»ùÓÚ×î³¤¹«¹²×Ó´®µÄÎÄ±¾ÏàËÆ¶ÈÎª: ";
 			std::cout << calculateSimilarity(file1, file2) << std::endl;
-			Sleep(10);
 		}
-
 		else if (choice == 4)
 		{
-			std::cout << "ï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½" << std::endl;
+			std::cout << "ÍË³ö³ÌÐò" << std::endl;
 			break;
 		}
-
 		else
 		{
-			std::cout << "ï¿½ï¿½Ð§ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ÔµÈ²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ë¡£\n"
-					  << std::endl;
+			std::cout << "ÎÞÐ§µÄÑ¡Ôñ£¬ÇëÊäÈë1 - 4Ö®¼äµÄÊý×Ö¡£" << std::endl;
 			std::cin.clear();
-			int MaxWordAmount = 9999;
-			std::cin.ignore(MaxWordAmount, '\n');
-			// continue;
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 		}
-		Sleep(8);
-		system("cls");
 	}
 
 	return 0;
