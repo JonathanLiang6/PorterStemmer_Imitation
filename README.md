@@ -29,8 +29,8 @@ PorterStemmer_Imitation/
 │   ├── WordTable.cpp		      #实现AVL树，用于存储和管理单词表
 │   └── main.cpp			     #主程序入口，提供用户交互界面
 ├── tests/
-│   ├── TestFile.txt
-│   └── TestFile2.txt			  #这两个文件均为输入样例
+│   ├── TestFile.txt			  #这两个文件均为输入样例
+│   └── TestFile2.txt			  #该文件使用了英文版《三体》选段
 ├── Makefile
 └── README.md
 ```
